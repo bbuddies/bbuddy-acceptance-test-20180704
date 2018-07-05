@@ -1,13 +1,18 @@
 When(/^add a budget$/) do |table|
-  budget = table.hashes[0]
-  visit 'http://localhost:9100/#/budgets/add'
-  clear_then_enter_text 'Month', budget['month']
-  clear_then_enter_text 'Amount', budget['amount']
-  touch 'Save'
+  table.hashes.each do |budget|
+    visit 'http://localhost:9100/#/budgets/add'
+    clear_then_enter_text 'month', budget['month']
+    clear_then_enter_text 'amount', budget['amount']
+    touch 'Save'
+  end
+
 end
 
 Then(/^I can see the budget in the list$/) do |table|
-  budget = table.hashes[0]
-  wait_for_text budget['month']
-  wait_for_text budget['amount']
+
+  table.hashes.each do |budget|
+    wait_for_text budget['month']
+    wait_for_text budget['amount']
+  end
+
 end
