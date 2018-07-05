@@ -14,6 +14,7 @@ Before ('@login') do
   user = {email: "joseph.yao.ruozhou@gmail.com", password: "123456"}
   Api.new.sign_up(user)
   LoginPage.open.login(OpenStruct.new(user))
+  wait_for_text "Dashboard"
 end
 
 Around do |scenario, block|
