@@ -8,4 +8,8 @@ class Api
   def sign_up(user)
     @connection.post('/users/signup', user)
   end
+
+  def add_budget(budget)
+    @connection.post('/budgets', budget)
+  end
 end
